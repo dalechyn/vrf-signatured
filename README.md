@@ -1,4 +1,4 @@
-# Foundry template
+# vrf-signatured
 
 This is a template for a Foundry project.
 
