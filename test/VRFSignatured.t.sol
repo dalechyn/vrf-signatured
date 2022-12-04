@@ -53,7 +53,7 @@ contract VRFSignaturedTest is Test {
     }
 
     function testCannotVerifyInvalidSIgnature() public {
-        bytes memory signature = hex"deadbeef";
+        bytes memory signature = hex"ABCDb0537e3a80e9f7fc2343ce8db13bdebabb8472190a7fe2b8978e83f9d5011bdfc1ec502201f0d4c3f9c9f64ead60ca80b4d6f0ea4e477ff858080c0756361c";
 
         vm.startPrank(BOB);
         vm.expectRevert(abi.encodeWithSignature("InvalidSignature()"));

@@ -12,6 +12,11 @@ You send the data, i.e. `address` of the user, backend generates the `random` nu
 
 You pass those to a VRF-aware function. profit!
 
+## Audits
+The contract was audited by OpenAI, so if you're a fan of Terminators trilogy, you may use it in production:
+![photo_2022-12-04 15 35 53](https://user-images.githubusercontent.com/35642018/205493571-3cbaa325-8a1a-45a0-bbe2-e36dc02743bb.jpeg)
+
+
 ## Installation
 
 ```
