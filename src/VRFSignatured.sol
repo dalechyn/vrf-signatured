@@ -5,6 +5,11 @@ import "@openzeppelin/contracts/utils/cryptography/ECDSA.sol";
 
 abstract contract VRFSignatured {
   address public immutable vrfSigner;
+  mapping (bytes => bool) public dirty;
+
+  error DirtySignature();
+  error InvalidSignature();
+
   constructor(address _vrfSigner) {
     vrfSigner = _vrfSigner;
   }
@@ -12,8 +17,12 @@ abstract contract VRFSignatured {
   function verifyRandomness(
     uint256 _randomness,
     bytes memory _signature
-  ) public view returns (bool) {
+  ) internal {
+    if (dirty[_signature]) {
+      revert DirtySignature();
+    }
+    dirty[_signature] = true;
     bytes32 message = keccak256(abi.encodePacked(msg.sender, _randomness));
-    return ECDSA.recover(ECDSA.toEthSignedMessageHash(message), _signature) == vrfSigner;
+    if (ECDSA.recover(ECDSA.toEthSignedMessageHash(message), _signature) != vrfSigner) revert InvalidSignature();
   }
 }
